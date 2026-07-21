@@ -1,0 +1,77 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Stream {
+  id          String         @id
+  name        String
+  full_form   String
+  description String
+  options     StreamOption[]
+
+  @@map("streams")
+}
+
+model StreamOption {
+  id          String       @id
+  stream_id   String
+  title       String
+  description String
+  stream      Stream       @relation(fields: [stream_id], references: [id], onDelete: Cascade)
+  branches    Branch[]
+
+  @@map("stream_options")
+}
+
+model Branch {
+  id          String       @id
+  option_id   String
+  title       String
+  description String
+  option      StreamOption @relation(fields: [option_id], references: [id], onDelete: Cascade)
+  career_paths CareerPath[]
+
+  @@map("branches")
+}
+
+model CareerPath {
+  id          String        @id
+  branch_id   String
+  title       String
+  description String
+  branch      Branch        @relation(fields: [branch_id], references: [id], onDelete: Cascade)
+  nodes       RoadmapNode[]
+
+  @@map("career_paths")
+}
+
+model RoadmapNode {
+  id             String        @id
+  career_path_id String
+  title          String
+  description    String
+  node_type      String        // 'core' | 'branch'
+  column         Int
+  row            Int
+  career_path    CareerPath    @relation(fields: [career_path_id], references: [id], onDelete: Cascade)
+  outgoing_edges RoadmapEdge[] @relation("SourceNode")
+  incoming_edges RoadmapEdge[] @relation("TargetNode")
+
+  @@map("roadmap_nodes")
+}
+
+model RoadmapEdge {
+  id             String      @id
+  source_node_id String
+  target_node_id String
+  style          String      // 'solid' | 'dotted'
+  source_node    RoadmapNode @relation("SourceNode", fields: [source_node_id], references: [id], onDelete: Cascade)
+  target_node    RoadmapNode @relation("TargetNode", fields: [target_node_id], references: [id], onDelete: Cascade)
+
+  @@map("roadmap_edges")
+}
