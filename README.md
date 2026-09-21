@@ -159,6 +159,88 @@ npm run db:seed
 
 ---
 
+## ✨ Key Features
+
+- Stream-based career exploration for Indian students after Class 12
+- Easy comparison between academic streams such as MPC, BiPC, CEC, MEC, and Diploma
+- Guided discovery of degree options, academic branches, and career paths
+- Interactive roadmap visualization inspired by milestone-based learning graphs
+- Fully responsive, modern UI built for both desktop and mobile browsing
+- Data-driven structure using Prisma and PostgreSQL for consistent content management
+
+---
+
+## 📁 Project Structure
+
+```bash
+Carrer-Compass/
+├── prisma/
+│   └── schema.prisma
+├── scripts/
+│   ├── schema.sql
+│   └── seed.sql
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── roadmap/[pathId]/page.tsx
+│   ├── components/
+│   └── lib/
+├── next.config.mjs
+├── package.json
+├── postcss.config.js
+├── tailwind.config.ts
+├── tsconfig.json
+├── README.md
+└── .gitignore
+```
+
+This structure keeps the app organized into route-level pages, reusable UI components, and a data layer for stream and roadmap content.
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in the project root if your local setup uses environment-based configuration:
+
+```bash
+DATABASE_URL="postgresql://username:password@localhost:5432/career_compass"
+# Optional if using Supabase client features
+NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+```
+
+> For a local development setup, make sure your PostgreSQL database is running before using Prisma commands or seeding the data.
+
+---
+
+## 🧭 User Journey
+
+1. Select a Class 12 stream.
+2. Explore relevant education and career options.
+3. Choose an academic branch or specialization.
+4. Review career paths and progression milestones.
+5. Study the interactive roadmap to understand skills, subjects, and next steps.
+
+This flow is designed to help students make more informed decisions without feeling overwhelmed by too many choices.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome if you want to improve the content, add more streams, expand the roadmap graph, or enhance the UI.
+
+Typical contribution ideas:
+
+- Add more Indian academic streams and degree programs
+- Improve roadmap content and milestone descriptions
+- Refine the user experience for mobile devices
+- Add analytics, filters, or search support
+
+---
+
 ## 📜 License
 
-MIT License. Developed for Indian 12th-grade students career guidance. 
+MIT License. Developed for Indian 12th-grade students career guidance.
