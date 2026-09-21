@@ -161,4 +161,4 @@ npm run db:seed
 
 ## 📜 License
 
-MIT License. Developed for Indian 12th-grade students career guidance.
+MIT License. Developed for Indian 12th-grade students career guidance. 
